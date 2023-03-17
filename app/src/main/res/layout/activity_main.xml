@@ -9,10 +9,133 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Op"
+        android:textSize="50sp"
+        app:layout_constraintStart_toStartOf="@id/gl_leftVerticalLimit"
+        app:layout_constraintEnd_toEndOf="@id/gl_rightVerticalLimit"
+        app:layout_constraintTop_toBottomOf="@id/gl_topHorizontalLimitButtons3" />
+
+    <Button
+        android:id="@+id/btnSum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/gl_topHorizontalLimitButtons4"
+        app:layout_constraintEnd_toStartOf="@+id/gl_rightVerticalLimit"
+        app:layout_constraintStart_toStartOf="@+id/gl_centerVertical"
+        app:layout_constraintTop_toTopOf="@+id/gl_topHorizontalLimitButtons5" />
+
+    <Button
+        android:id="@+id/btnSub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/gl_topHorizontalLimitButtons8"
+        app:layout_constraintEnd_toStartOf="@+id/gl_rightVerticalLimit"
+        app:layout_constraintStart_toStartOf="@+id/gl_centerVertical"
+        app:layout_constraintTop_toTopOf="@+id/gl_topHorizontalLimitButtons4" />
+
+    <Button
+        android:id="@+id/btnSub2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/gl_bottomHorizontalLimitButtons"
+        app:layout_constraintEnd_toStartOf="@+id/gl_rightVerticalLimit"
+        app:layout_constraintStart_toStartOf="@+id/gl_centerVertical"
+        app:layout_constraintTop_toTopOf="@+id/gl_topHorizontalLimitButtons8" />
+
+    <Button
+        android:id="@+id/btnDiv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/gl_topHorizontalLimitButtons6"
+        app:layout_constraintEnd_toStartOf="@+id/gl_rightVerticalLimit"
+        app:layout_constraintStart_toStartOf="@+id/gl_centerVertical"
+        app:layout_constraintTop_toTopOf="@+id/gl_topHorizontalLimitButtons7" />
+
+    <Button
+        android:id="@+id/btnMul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/gl_topHorizontalLimitButtons5"
+        app:layout_constraintEnd_toStartOf="@+id/gl_rightVerticalLimit"
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toStartOf="@+id/gl_centerVertical"
+        app:layout_constraintTop_toTopOf="@+id/gl_topHorizontalLimitButtons6" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_topHorizontalLimitButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_topHorizontalLimitButtons4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.73" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_topHorizontalLimitButtons8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.83" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_topHorizontalLimitButtons5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.63" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_topHorizontalLimitButtons6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.53" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_topHorizontalLimitButtons7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.43" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_topHorizontalLimitButtons3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_bottomHorizontalLimitButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.98" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_rightVerticalLimit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_centerVertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.65" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_leftVerticalLimit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
