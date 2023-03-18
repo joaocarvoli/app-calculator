@@ -1,10 +1,10 @@
 package com.carvoli.calculator.domain
 
-class DoOperation {
+class Operations {
     private var calculator : Calculator = Calculator()
 
-    fun doOperation(input: Array<String>, operator : String) : String{
-        val values = preProcessing(input)
+    fun doOperation(a : Float, b : Float, operator: String) : String{
+        val values = preProcessing(a, b)
 
         val result = if(operator == "+"){
             calculator.add(values[0], values[1]).toString()
@@ -21,9 +21,7 @@ class DoOperation {
         return result
     }
 
-    private fun preProcessing(values: Array<String>) : Array<Double>{
-        val a = values[0].toDouble()
-        val b = values[1].toDouble()
-        return arrayOf(a, b)
+    private fun preProcessing(a : Float, b : Float) : Array<Double>{
+        return arrayOf(a.toDouble(), b.toDouble())
     }
 }
