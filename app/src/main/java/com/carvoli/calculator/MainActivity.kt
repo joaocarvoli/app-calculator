@@ -11,11 +11,6 @@ import com.carvoli.calculator.domain.Operations
 
 class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
-    private val isThereDigit = false
-    private var calculatorObserver = CalculatorObserver
-    private val operations = Operations()
-    private var preOperationValue : Float = 0F
-    private var actualOperator : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,68 +18,30 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun putOperation(view : View){
-        val operation = findViewById<Button>(view.id)
-        updateCalc(operation.text.toString())
-    }
-
-    fun putDigit(view : View){
-        checkIfIsThereDigit()
+    fun getDigit(view : View){
         val digit = findViewById<Button>(view.id)
-        updateValue(digit.text.toString())
+        updateTextViewCalculus(digit.text)
     }
 
-    fun removeDigit(view: View?){
+    fun getOperator(view : View){
+        val operator = findViewById<Button>(view.id)
+        updateTextViewCalculus(operator.text)
+    }
+
+    fun removeDigit(view : View?){
         val tvCalculus = findViewById<TextView>(R.id.tvCalculus)
-        val text = tvCalculus.text.toString()
-        val clearedText = text.dropLast(1)
-        tvCalculus.text = clearedText
-        updateResult(clearedText)
-        updateViewResult()
+        tvCalculus.text = tvCalculus.text.dropLast(1)
     }
 
-    private fun updateValue(value : String){
-        val tvCalculus = findViewById<TextView>(R.id.tvCalculus)
-        val calculusText = tvCalculus.text.toString() + value
-        tvCalculus.text = calculusText
-        updateResult(calculusText)
-        updateViewResult()
-    }
-
-    private fun updateCalc(operation : String){
-        if(preOperationValue == 0F){
-            preOperationValue = calculatorObserver.calcResult
-            calculatorObserver.calcResult = 0F
-            actualOperator = operation
-        } else {
-            val result = operations.doOperation(preOperationValue, calculatorObserver.calcResult, operation)
-            updateResult(result)
-            updateViewResult()
-        }
-    }
-
-
-    private fun checkIfIsThereDigit(){
-        if(!isThereDigit){
-            val tvCalculus = findViewById<TextView>(R.id.tvCalculus)
-            tvCalculus.isVisible = true
-        }
-    }
-
-    private fun updateResult(value : String){
-        if(value.isNotEmpty()){
-            calculatorObserver.calcResult = value.toFloat()
-        } else {
-            calculatorObserver.calcResult = 0F
-            updateViewResult()
-        }
-    }
-    private fun updateViewResult(){
+    fun showResult(view : View?){
         val tvResult = findViewById<TextView>(R.id.tvResult)
-        if(calculatorObserver.calcResult == 0F){
-            tvResult.text = ""
-        } else {
-            tvResult.text = calculatorObserver.calcResult.toString()
-        }
+        tvResult.isVisible = true
+    }
+
+
+    private fun updateTextViewCalculus(value : CharSequence){
+        val tvCalculus = findViewById<TextView>(R.id.tvCalculus)
+        val textUpdated = tvCalculus.text.toString() + value
+        tvCalculus.text = textUpdated
     }
 }

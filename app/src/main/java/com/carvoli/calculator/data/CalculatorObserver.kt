@@ -7,7 +7,7 @@ import com.carvoli.calculator.BR
 object CalculatorObserver : BaseObservable() {
 
     @get:Bindable
-    var calcResult : Float = 0F
+    var result : Float = 0F
         set(value) {
             field = value
             notifyPropertyChanged(BR.calcResult)
