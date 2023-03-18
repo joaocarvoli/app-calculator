@@ -19,4 +19,6 @@
     <string name="btn_digit0">0</string>
     <string name="btn_dot">.</string>
     <string name="btn_equal">=</string>
+    <string name="calculus">10+15</string>
+    <string name="result">=25</string>
 </resources>
