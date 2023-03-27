@@ -10,7 +10,6 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import androidx.viewbinding.ViewBindings
-import com.carvoli.calculator.ui.CalculatorState
 import com.carvoli.calculator.ui.CalculatorViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -22,6 +21,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         calculatorViewModel = ViewModelProvider(this)[CalculatorViewModel::class.java]
+
+        calculatorViewModel.result().observe(this){
+            Log.d("CalculatorViewModel", "result: $it")
+        }
+
+        calculatorViewModel.storedValue().observe(this){
+            Log.d("CalculatorViewModel", "storedValue: $it")
+        }
+
+        calculatorViewModel.actualValue().observe(this){
+            Log.d("CalculatorViewModel", "actualValue: $it")
+        }
     }
 
 

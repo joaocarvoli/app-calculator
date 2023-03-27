@@ -11,48 +11,59 @@ class CalculatorViewModel : ViewModel(){
     private val calculator = Calculator()
     private val state = CalculatorState
     private var result = MutableLiveData<Double>()
-    private var storedValue = MutableLiveData<Double>()
-    private var actualValue = MutableLiveData<Double>()
+    private var storedValue = MutableLiveData<String>()
+    private var actualValue = MutableLiveData<String>()
     private var storedOperator = MutableLiveData<String>()
 
     fun onNumberButton(number : String){
-        if(state.storedOperator.isEmpty()){
-            actualValue.postValue(actualValue.value?.plus(number.toDouble()))
+        if(storedOperator.value == null){
+            var previousValue = ""
+            if(actualValue.value != null){
+                previousValue = actualValue.value!!
+            }
+            actualValue.postValue(previousValue.plus(number))
         } else {
-            storedOperator.postValue(actualValue.value?.toString())
-            when(state.storedOperator){
-                "+" -> result.postValue(calculator.add(state.storedValue, state.actualValue))
-                "-" -> result.postValue(calculator.sub(state.storedValue, state.actualValue))
-                "/" -> result.postValue(calculator.div(state.storedValue, state.actualValue))
-                "x" -> result.postValue(calculator.mul(state.storedValue, state.actualValue))
+            if(storedValue.value == null){
+                if(storedValue.value != null){
+                    storedValue.postValue(actualValue.value)
+                }
+                actualValue.postValue(number)
+            } else {
+                var previousValue = ""
+                if(actualValue.value != null){
+                    previousValue = actualValue.value!!
+                }
+                actualValue.postValue(previousValue.plus(number))
             }
         }
     }
 
     fun onOperatorButton(operator : String){
+        if(storedOperator.value?.length != 0){
+            doCalc(storedValue, actualValue, storedOperator)
+        }
+        storedValue.postValue(result.value.toString())
         storedOperator.postValue(operator)
-        /*Log.d(TAG, "HERE")
-        if(state.storedOperator.isEmpty()){
-            state.storedOperator = operator
-            state.storedValue = state.actualValue
-            state.actualValue = 0.0
-        } else {
-            when(state.storedOperator){
-                "+" -> {
-                    state.result = calculator.add(state.storedValue, state.actualValue)
-                }
-                "-" -> {
-                    state.result = calculator.sub(state.storedValue, state.actualValue)
-                }
-                "/" -> {
-                    state.result = calculator.div(state.storedValue, state.actualValue)
-                }
-                "x" -> {
-                    state.result = calculator.mul(state.storedValue, state.actualValue)
-                }
-            }
-        }*/
     }
 
+    fun result(): MutableLiveData<Double> {
+        return result
+    }
 
+    fun actualValue() : MutableLiveData<String> {
+        return actualValue
+    }
+
+    fun storedValue() : MutableLiveData<String> {
+        return storedValue
+    }
+
+    private fun doCalc(a : MutableLiveData<String>, b : MutableLiveData<String>, operator : MutableLiveData<String>){
+        when(operator.value){
+            "+" -> result.postValue(calculator.add(a.value?.toDouble()!!, b.value?.toDouble()!!))
+            "-" -> result.postValue(calculator.sub(a.value?.toDouble()!!, b.value?.toDouble()!!))
+            "*" -> result.postValue(calculator.mul(a.value?.toDouble()!!, b.value?.toDouble()!!))
+            "/" -> result.postValue(calculator.div(a.value?.toDouble()!!, b.value?.toDouble()!!))
+        }
+    }
 }
