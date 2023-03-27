@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="tvCalculus" type="id" />
+    <item name="tvResult" type="id" />
+    <item name="view" type="id" />
+    <item name="linearLayout" type="id" />
+    <item name="btnC" type="id" />
+    <item name="btnBackspace" type="id" />
+    <item name="btnPercent" type="id" />
+    <item name="btnDigit7" type="id" />
+    <item name="btnDigit8" type="id" />
+    <item name="btnDigit9" type="id" />
+    <item name="btnDigit4" type="id" />
+    <item name="btnDigit5" type="id" />
+    <item name="btnDigit6" type="id" />
+    <item name="btnPlus" type="id" />
+    <item name="btnDigit1" type="id" />
+    <item name="btnDigit2" type="id" />
+    <item name="btnDigit3" type="id" />
+    <item name="btnMinus" type="id" />
+    <item name="btnAc" type="id" />
+    <item name="btnDigit0" type="id" />
+    <item name="btnDot" type="id" />
+    <item name="btnEqual" type="id" />
+</resources>

@@ -61,6 +61,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnC"
                     style="@style/operatorButton"
+                    android:onClick="clearInput"
                     android:text="@string/btn_c" />
 
                 <com.google.android.material.button.MaterialButton
