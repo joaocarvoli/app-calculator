@@ -8,13 +8,10 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
-import androidx.viewbinding.ViewBinding
-import androidx.viewbinding.ViewBindings
 import com.carvoli.calculator.ui.CalculatorViewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var calculatorViewModel: CalculatorViewModel
-    private val state = CalculatorState
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
         calculatorViewModel = ViewModelProvider(this)[CalculatorViewModel::class.java]
 
-        calculatorViewModel.result().observe(this){
+        /*calculatorViewModel.result().observe(this){
             Log.d("CalculatorViewModel", "result: $it")
         }
 
@@ -32,20 +29,20 @@ class MainActivity : AppCompatActivity() {
 
         calculatorViewModel.actualValue().observe(this){
             Log.d("CalculatorViewModel", "actualValue: $it")
-        }
+        }*/
     }
 
 
     fun getDigit(view : View){
         val digit = findViewById<Button>(view.id)
         updateTextViewCalculus(digit.text)
-        calculatorViewModel.onNumberButton(digit.text.toString())
+        calculatorViewModel.onDigitClicked(digit.text.toString())
     }
 
     fun getOperator(view : View){
         val operator = findViewById<Button>(view.id)
         updateTextViewCalculus(operator.text)
-        calculatorViewModel.onOperatorButton(operator.text.toString())
+        calculatorViewModel.onOperatorClicked(operator.text.toString())
     }
 
     fun removeDigit(view : View?){

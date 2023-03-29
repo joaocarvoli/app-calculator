@@ -7,63 +7,40 @@ import androidx.lifecycle.ViewModel
 import com.carvoli.calculator.domain.Calculator
 
 class CalculatorViewModel : ViewModel(){
-    private val TAG = "CalculatorViewModel"
     private val calculator = Calculator()
-    private val state = CalculatorState
-    private var result = MutableLiveData<Double>()
     private var storedValue = MutableLiveData<String>()
     private var actualValue = MutableLiveData<String>()
     private var storedOperator = MutableLiveData<String>()
 
-    fun onNumberButton(number : String){
-        if(storedOperator.value == null){
-            var previousValue = ""
-            if(actualValue.value != null){
-                previousValue = actualValue.value!!
-            }
-            actualValue.postValue(previousValue.plus(number))
+    fun onDigitClicked(number : String){
+        val previousValue = ""
+        if(actualValue.value?.length != 0){
+            actualValue.postValue(storedOperator.value)
         } else {
-            if(storedValue.value == null){
-                if(storedValue.value != null){
-                    storedValue.postValue(actualValue.value)
-                }
-                actualValue.postValue(number)
-            } else {
-                var previousValue = ""
-                if(actualValue.value != null){
-                    previousValue = actualValue.value!!
-                }
-                actualValue.postValue(previousValue.plus(number))
+            actualValue.postValue("$previousValue$number")
+        }
+    }
+
+    fun onOperatorClicked(operator : String){
+        if(storedOperator.value?.length == 0){
+            storedValue.postValue(actualValue.value)
+            actualValue.postValue("")
+        } else {
+            if(actualValue.value?.length != 0 && storedValue.value?.length!! != 0 && storedOperator.value?.length != 0) {
+                storedValue.postValue(doCalc(storedValue, actualValue, storedOperator))
+                storedOperator.postValue("")
             }
         }
     }
 
-    fun onOperatorButton(operator : String){
-        if(storedOperator.value?.length != 0){
-            doCalc(storedValue, actualValue, storedOperator)
-        }
-        storedValue.postValue(result.value.toString())
-        storedOperator.postValue(operator)
-    }
-
-    fun result(): MutableLiveData<Double> {
-        return result
-    }
-
-    fun actualValue() : MutableLiveData<String> {
-        return actualValue
-    }
-
-    fun storedValue() : MutableLiveData<String> {
-        return storedValue
-    }
-
-    private fun doCalc(a : MutableLiveData<String>, b : MutableLiveData<String>, operator : MutableLiveData<String>){
+    private fun doCalc(a : MutableLiveData<String>, b : MutableLiveData<String>, operator : MutableLiveData<String>) : String{
+        var result = 0.0
         when(operator.value){
-            "+" -> result.postValue(calculator.add(a.value?.toDouble()!!, b.value?.toDouble()!!))
-            "-" -> result.postValue(calculator.sub(a.value?.toDouble()!!, b.value?.toDouble()!!))
-            "*" -> result.postValue(calculator.mul(a.value?.toDouble()!!, b.value?.toDouble()!!))
-            "/" -> result.postValue(calculator.div(a.value?.toDouble()!!, b.value?.toDouble()!!))
+            "+" -> result = calculator.add(a.value?.toDouble()!!, b.value?.toDouble()!!)
+            "-" -> result = calculator.sub(a.value?.toDouble()!!, b.value?.toDouble()!!)
+            "*" -> result = calculator.mul(a.value?.toDouble()!!, b.value?.toDouble()!!)
+            "/" -> result = calculator.div(a.value?.toDouble()!!, b.value?.toDouble()!!)
         }
+        return result.toString()
     }
 }
