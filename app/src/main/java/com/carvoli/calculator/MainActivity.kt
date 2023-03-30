@@ -12,24 +12,33 @@ import com.carvoli.calculator.ui.CalculatorViewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var calculatorViewModel: CalculatorViewModel
+    private lateinit var result : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        result = findViewById(R.id.tvResult)
+
         calculatorViewModel = ViewModelProvider(this)[CalculatorViewModel::class.java]
 
-        /*calculatorViewModel.result().observe(this){
-            Log.d("CalculatorViewModel", "result: $it")
+        calculatorViewModel.getStoredOperator().observe(this){
+            Log.d("CalculatorViewModel", "operator: $it")
         }
 
-        calculatorViewModel.storedValue().observe(this){
+        calculatorViewModel.getStoredValue().observe(this){
             Log.d("CalculatorViewModel", "storedValue: $it")
+            result.text = it
+            result.isVisible = true
         }
 
-        calculatorViewModel.actualValue().observe(this){
+        calculatorViewModel.getActualValue().observe(this){
             Log.d("CalculatorViewModel", "actualValue: $it")
-        }*/
+        }
+
+        calculatorViewModel.updateResult().observe(this){list ->
+            Log.d("CalculatorViewModel", "array: ${list[0]},${list[1]}")
+        }
     }
 
 

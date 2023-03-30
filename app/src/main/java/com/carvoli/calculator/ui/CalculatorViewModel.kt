@@ -13,23 +13,21 @@ class CalculatorViewModel : ViewModel(){
     private var storedOperator = MutableLiveData<String>()
 
     fun onDigitClicked(number : String){
-        val previousValue = ""
-        if(actualValue.value?.length != 0){
-            actualValue.postValue(storedOperator.value)
-        } else {
-            actualValue.postValue("$previousValue$number")
+        var previousValue = ""
+        if(actualValue.value?.length != 0 && actualValue.value?.length != null) {
+            previousValue = actualValue.value!!
         }
+        actualValue.postValue("$previousValue$number")
     }
 
     fun onOperatorClicked(operator : String){
-        if(storedOperator.value?.length == 0){
+        if(storedOperator.value?.length == null || storedOperator.value?.length == 0){
+            storedOperator.postValue(operator)
             storedValue.postValue(actualValue.value)
             actualValue.postValue("")
         } else {
-            if(actualValue.value?.length != 0 && storedValue.value?.length!! != 0 && storedOperator.value?.length != 0) {
-                storedValue.postValue(doCalc(storedValue, actualValue, storedOperator))
-                storedOperator.postValue("")
-            }
+            storedValue.postValue(doCalc(storedValue, actualValue, storedOperator))
+            storedOperator.postValue("")
         }
     }
 
@@ -43,4 +41,29 @@ class CalculatorViewModel : ViewModel(){
         }
         return result.toString()
     }
+
+    fun getStoredValue(): MutableLiveData<String> {
+        return storedValue
+    }
+    fun getStoredOperator(): MutableLiveData<String> {
+        return storedOperator
+    }
+    fun getActualValue(): MutableLiveData<String> {
+        return actualValue
+    }
+
+    fun updateResult(): MutableLiveData<List<String>> {
+        val list = arrayListOf("","")
+        val mutableList = MutableLiveData<List<String>>()
+
+        if(storedValue.value != null && actualValue.value != null){
+            list.add(storedValue.value!!)
+            list.add(actualValue.value!!)
+        }
+
+        mutableList.postValue(list)
+
+        return mutableList
+    }
+
 }
