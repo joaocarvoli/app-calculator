@@ -11,6 +11,7 @@ class CalculatorViewModel : ViewModel(){
     private var storedValue = MutableLiveData<String>()
     private var actualValue = MutableLiveData<String>()
     private var storedOperator = MutableLiveData<String>()
+    private var actualOperator = MutableLiveData<String>()
 
     fun onDigitClicked(number : String){
         var previousValue = ""
@@ -25,13 +26,20 @@ class CalculatorViewModel : ViewModel(){
             storedOperator.postValue(operator)
             storedValue.postValue(actualValue.value)
             actualValue.postValue("")
-        } else {
-            storedValue.postValue(doCalc(storedValue, actualValue, storedOperator))
+        } else if(storedValue.value?.length!! > 0 && actualValue.value?.length!! > 0){
+            storedOperator.postValue(operator)
+            storedValue.postValue(doCalc(storedValue, actualValue, storedOperator).toString())
+            actualValue.postValue("")
+        }
+        else {
+            storedValue.postValue(doCalc(storedValue, actualValue, storedOperator).toString())
             storedOperator.postValue("")
         }
     }
 
-    private fun doCalc(a : MutableLiveData<String>, b : MutableLiveData<String>, operator : MutableLiveData<String>) : String{
+    fun doCalc(a : MutableLiveData<String> = storedValue,
+               b : MutableLiveData<String> = actualValue,
+               operator : MutableLiveData<String> = storedOperator) : Double {
         var result = 0.0
         when(operator.value){
             "+" -> result = calculator.add(a.value?.toDouble()!!, b.value?.toDouble()!!)
@@ -39,7 +47,8 @@ class CalculatorViewModel : ViewModel(){
             "*" -> result = calculator.mul(a.value?.toDouble()!!, b.value?.toDouble()!!)
             "/" -> result = calculator.div(a.value?.toDouble()!!, b.value?.toDouble()!!)
         }
-        return result.toString()
+        storedValue.postValue(result.toString())
+        return result
     }
 
     fun getStoredValue(): MutableLiveData<String> {
@@ -52,18 +61,15 @@ class CalculatorViewModel : ViewModel(){
         return actualValue
     }
 
-    fun updateResult(): MutableLiveData<List<String>> {
-        val list = arrayListOf("","")
-        val mutableList = MutableLiveData<List<String>>()
-
-        if(storedValue.value != null && actualValue.value != null){
-            list.add(storedValue.value!!)
-            list.add(actualValue.value!!)
-        }
-
-        mutableList.postValue(list)
-
-        return mutableList
+    fun setStoredValue(value : String){
+        storedValue.postValue(value)
     }
 
+    fun setActualValue(value : String){
+        actualValue.postValue(value)
+    }
+
+    fun setStoredOperator(value : String){
+        storedOperator.postValue(value)
+    }
 }

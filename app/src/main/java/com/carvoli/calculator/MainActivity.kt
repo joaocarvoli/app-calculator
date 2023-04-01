@@ -28,16 +28,10 @@ class MainActivity : AppCompatActivity() {
 
         calculatorViewModel.getStoredValue().observe(this){
             Log.d("CalculatorViewModel", "storedValue: $it")
-            result.text = it
-            result.isVisible = true
         }
 
         calculatorViewModel.getActualValue().observe(this){
             Log.d("CalculatorViewModel", "actualValue: $it")
-        }
-
-        calculatorViewModel.updateResult().observe(this){list ->
-            Log.d("CalculatorViewModel", "array: ${list[0]},${list[1]}")
         }
     }
 
@@ -61,12 +55,19 @@ class MainActivity : AppCompatActivity() {
 
     fun clearInput(view : View?){
         val tvCalculus = findViewById<TextView>(R.id.tvCalculus)
+        val tvResult = findViewById<TextView>(R.id.tvResult)
+        tvResult.text = ""
         tvCalculus.text = ""
+        tvResult.isVisible = false
+        calculatorViewModel.setActualValue("")
+        calculatorViewModel.setStoredValue("")
+        calculatorViewModel.setStoredOperator("")
     }
 
 
     fun showResult(view : View?){
         val tvResult = findViewById<TextView>(R.id.tvResult)
+        //val result = calculatorViewModel.doCalc().toInt()
         tvResult.isVisible = true
     }
 
@@ -75,5 +76,17 @@ class MainActivity : AppCompatActivity() {
         val tvCalculus = findViewById<TextView>(R.id.tvCalculus)
         val textUpdated = tvCalculus.text.toString() + value
         tvCalculus.text = textUpdated
+    }
+
+    private fun setReturnType(data : Any): Any {
+        if(data is Float){
+            return data.toFloat()
+        } else if(data is Double){
+            return data.toDouble()
+        } else if(data is Int){
+            return data.toInt()
+        } else {
+            return data
+        }
     }
 }
