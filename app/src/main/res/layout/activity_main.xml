@@ -54,15 +54,13 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnC"
                 style="@style/operatorButton"
-                android:onClick="clearInput"
                 android:text="@string/btn_c" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnBackspace"
                 style="@style/operatorButton"
                 app:icon="@drawable/baseline_backspace_24"
-                app:iconTint="@color/btnBackground2"
-                android:onClick="removeDigit"/>
+                app:iconTint="@color/btnBackground2" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPercent"
@@ -72,7 +70,6 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDiv"
                 style="@style/operatorButton"
-                android:onClick="getOperator"
                 android:text="@string/btn_div" />
         </LinearLayout>
 
@@ -85,25 +82,21 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDigit7"
                 style="@style/digitButton"
-                android:onClick="getDigit"
                 android:text="@string/btn_digit7" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDigit8"
                 style="@style/digitButton"
-                android:onClick="getDigit"
                 android:text="@string/btn_digit8" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDigit9"
                 style="@style/digitButton"
-                android:onClick="getDigit"
                 android:text="@string/btn_digit9" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnMul"
                 style="@style/operatorButton"
-                android:onClick="getOperator"
                 android:text="@string/btn_mul" />
         </LinearLayout>
 
@@ -116,25 +109,21 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDigit4"
                 style="@style/digitButton"
-                android:onClick="getDigit"
                 android:text="@string/btn_digit4" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDigit5"
                 style="@style/digitButton"
-                android:onClick="getDigit"
                 android:text="@string/btn_digit5" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDigit6"
                 style="@style/digitButton"
-                android:onClick="getDigit"
                 android:text="@string/btn_digit6" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPlus"
                 style="@style/operatorButton"
-                android:onClick="getOperator"
                 android:text="@string/btn_plus" />
         </LinearLayout>
 
@@ -147,25 +136,21 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDigit1"
                 style="@style/digitButton"
-                android:onClick="getDigit"
                 android:text="@string/btn_digit1" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDigit2"
                 style="@style/digitButton"
-                android:onClick="getDigit"
                 android:text="@string/btn_digit2" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDigit3"
                 style="@style/digitButton"
-                android:onClick="getDigit"
                 android:text="@string/btn_digit3" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnMinus"
                 style="@style/operatorButton"
-                android:onClick="getOperator"
                 android:text="@string/btn_minus" />
         </LinearLayout>
 
@@ -184,7 +169,6 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDigit0"
                 style="@style/digitButton"
-                android:onClick="getDigit"
                 android:text="@string/btn_digit0" />
 
             <com.google.android.material.button.MaterialButton
@@ -195,8 +179,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnEqual"
                 style="@style/operatorButton"
-                android:text="@string/btn_equal"
-                android:onClick="showResult"/>
+                android:text="@string/btn_equal" />
         </LinearLayout>
 
     </LinearLayout>
